@@ -5,7 +5,7 @@
   "main": "server.ts",
   "scripts": {
     "build": "tsc",
-    "start": "node server.js"
+    "start": "node dist/server.js"
   },
   "dependencies": {
     "@types/express": "^4.17.21",
