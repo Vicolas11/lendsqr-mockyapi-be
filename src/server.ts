@@ -1,10 +1,13 @@
 import express, { Request, Response } from "express";
 import axios from "axios";
+import cors from 'cors';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const MOCKY_URL =
   "https://run.mocky.io/v3/ae1b60df-ab43-4a0b-8a42-7375aba77b59";
+
+app.use(cors());
 
 // Fetch data from Mocky.io
 const fetchData = async (): Promise<any[]> => {
