@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import axios from "axios";
 import cors from 'cors';
 
@@ -8,6 +8,16 @@ const MOCKY_URL =
   "https://run.mocky.io/v3/ae1b60df-ab43-4a0b-8a42-7375aba77b59";
 
 app.use(cors());
+
+app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
+  res.status(500).send(`Something went wrong. ${err.message}`);
+});
+
+app.get("/", (_req: Request, res: Response) => {
+  res.send(
+    '<h1 style="text-align: center;">Server is running 👌!</h1>'
+  );
+});
 
 // Fetch data from Mocky.io
 const fetchData = async (): Promise<any[]> => {
