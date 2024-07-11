@@ -5,7 +5,7 @@ import cors from 'cors';
 const app = express();
 const PORT = process.env.PORT || 3000;
 const MOCKY_URL =
-  "https://run.mocky.io/v3/ad281a0d-05ad-4e4f-a527-26603b13e6a8";
+  "https://run.mocky.io/v3/b810b4b3-5987-4a93-92a9-2d3d9123546b";
 
 app.use(cors());
 
