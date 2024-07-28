@@ -1,11 +1,12 @@
 import express, { NextFunction, Request, Response } from "express";
+import { config } from "dotenv";
 import axios from "axios";
 import cors from 'cors';
 
+config();
 const app = express();
 const PORT = process.env.PORT || 3000;
-const MOCKY_URL =
-  "https://run.mocky.io/v3/ad281a0d-05ad-4e4f-a527-26603b13e6a8";
+const MOCKY_URL = process.env.MOCKY_API as string;
 
 app.use(cors());
 
