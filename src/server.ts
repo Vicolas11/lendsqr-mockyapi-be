@@ -1,12 +1,9 @@
 import express, { NextFunction, Request, Response } from "express";
-import { config } from "dotenv";
-import axios from "axios";
+import { data } from "./data";
 import cors from 'cors';
 
-config();
 const app = express();
 const PORT = process.env.PORT || 3000;
-const MOCKY_URL = process.env.MOCKY_API as string;
 
 app.use(cors());
 
@@ -20,25 +17,10 @@ app.get("/", (_req: Request, res: Response) => {
   );
 });
 
-// Fetch data from Mocky.io
-const fetchData = async (): Promise<any[]> => {
-  try {
-    const response = await axios.get(MOCKY_URL);
-
-    return response.data || [];
-  } catch (error: any) {
-    console.error("Error fetching data:", error);
-    throw new Error(error.message || "Error fetching data");
-  }
-};
-
 app.get("/data", async (req: Request, res: Response) => {
   try {
     const page = parseInt(req.query.page as string, 10) || 1;
     const pageSize = parseInt(req.query.pageSize as string, 10) || 9;
-
-    // Fetch the data
-    const data = await fetchData();
 
     if (!Array.isArray(data)) {
       throw new Error("Fetched data is not an array");
